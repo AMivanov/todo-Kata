@@ -84,7 +84,7 @@
     color: #4d4d4d;
 }
 
-.todo-list .view.completed label .description {
+.todo-list .completed label .description {
     color: #cdcdcd;
     text-decoration: line-through;
 }
@@ -121,10 +121,6 @@
 
 .todo-list li .icon-edit:after {
     content: '✎';
-}
-
-.todo-list li .edit {
-    display: none;
 }
 
 .todo-list li.editing:last-child {

@@ -1,23 +1,41 @@
+import React from "react";
+
 import Task from "../task";
+import TaskEdit from "../task-edit";
 
 import './task-list.css'
 
-const TaskList = ({ todos, onDeleted }) => {
-    const elements = todos.map((item) => {
-        const { id, itemProps } = item
-        return (
-          <li key={id} className={item.className}>
-              <Task label={item.label} { ...itemProps }
-              onDeleted={() => onDeleted(id)} />
-          </li>
-        );
-    })
+export default class TaskList extends React.Component {
 
-    return (
-        <ul className='todo-list'>
+    state = {
+        todos: [],
+    }
+
+    render() {
+        const {
+            todos, onDeleted, onToggleCompleted, onToggleEdit, onLabelChange
+        } = this.props
+
+        const elements = todos.map((item) => {
+            if (item.editing) {
+                return (<TaskEdit {...item}
+                                  key={item.id}
+                                  todos={this.props.todos}
+                                  onToggleEdit={() => onToggleEdit(item.id)}
+                                  onLabelChange={onLabelChange}
+                />)
+            } else {
+                return (<Task {...item}
+                              key={item.id}
+                              onToggleCompleted={() => onToggleCompleted(item.id)}
+                              onToggleEdit={() => onToggleEdit(item.id)}
+                              onDeleted={() => onDeleted(item.id)}
+                />)
+            }
+        })
+        return (<ul className='todo-list'>
             {elements}
-        </ul>
-    );
-};
+        </ul>);
 
-export default TaskList;
+    }
+}
