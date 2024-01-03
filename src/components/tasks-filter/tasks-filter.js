@@ -1,8 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import './tasks-filter.css'
 
 export  default class TasksFilter extends React.Component {
+
+    static defaultProps = {
+        filter: 'all',
+        onFilterChange: () => {}
+    }
+
+    static propTypes = {
+        filter: PropTypes.string,
+        onFilterChange: PropTypes.func
+    }
+
     buttons = [
         {name: 'all', label: 'All'},
         {name: 'active', label: 'Active'},

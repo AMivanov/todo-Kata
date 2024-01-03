@@ -1,8 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
+import CreateTasksTimer from "../create-tasks-timer";
 
 import './task.css'
 
 export default class Task extends React.Component {
+
+    static defaultProps = {
+        label: '',
+        completed: false,
+        onToggleCompleted: () => {},
+        onToggleEdit: () => {},
+        onDeleted: () => {},
+        editing: false
+    }
+
+    static propTypes = {
+        label: PropTypes.string,
+        completed: PropTypes.bool,
+        onToggleCompleted: PropTypes.func,
+        onToggleEdit: PropTypes.func,
+        onDeleted: PropTypes.func,
+        editing: PropTypes.bool
+    }
 
     render() {
         const {
@@ -27,7 +47,7 @@ export default class Task extends React.Component {
                 />
                 <label>
                     <span className='description'>{label}</span>
-                    <span className='created'>Created 17 seconds ago</span>
+                    <CreateTasksTimer />
                 </label>
                 <button className='icon icon-edit'
                         onClick={onToggleEdit}></button>

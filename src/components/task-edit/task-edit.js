@@ -1,11 +1,26 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import './task-edit.css'
 
 export default class TaskEdit extends React.Component {
 
+    static defaultProps = {
+        id:1,
+        todos: [],
+        onToggleEdit: () => {},
+        onLabelChange: () => {}
+    }
+
+    static propTypes = {
+        id: PropTypes.number,
+        todos: PropTypes.array,
+        onToggleEdit: PropTypes.func,
+        onLabelChange: PropTypes.func
+    }
+
     state = {
-        label: " ", todos: [], id: 1,
+        label: " "
     }
 
     className = "view"
