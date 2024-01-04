@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es6": true,
+    "node": true
   },
   "ignorePatterns": ["node_modules", "dist", "build"],
   "extends": [
@@ -9,26 +10,53 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "airbnb",
+    "plugin:react/jsx-runtime"
   ],
+  "parser": "@babel/eslint-parser",
+
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": 12,
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
   },
   "plugins": ["react", "prettier", "import"],
   "rules": {
-    "indent": ["error", 2],
-    "prettier/prettier": "error",
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-shadow": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/button-has-type": "off",
+    "no-plusplus": "off",
+    "react/static-property-placement": "off",
+    "space-before-function-paren": "off",
+    "indent": ["warn", 2],
+    "prettier/prettier": "off",
     "linebreak-style": [0, "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "never"],
+    "semi": ["warn", "never"],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
+    "import/extensions": 0,
     "import/no-unresolved": [2, { "caseSensitive": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/control-has-associated-label": "off",
+    "react/destructuring-assignment": "off",
+    "react/state-in-constructor": "off",
+    "react/forbid-prop-types": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "react/prefer-stateless-function": "off",
+    "class-methods-use-this": "off",
+    "react/sort-comp": "off",
+    "eol-last": "off",
+    "max-len": ["warn", 150, { "ignoreUrls": true }],
+    "no-tabs": "off",
     "import/order": [
       2,
       {
@@ -50,6 +78,8 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "moduleDirectory": ["node_modules", "src/"]
       }
+
     }
+
   }
 }
