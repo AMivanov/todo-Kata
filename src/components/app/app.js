@@ -3,6 +3,7 @@ import React from 'react'
 import NewTaskForm from '../new-task-form'
 import TaskList from '../task-list'
 import Footer from '../footer'
+console.log('foo')
 
 import './app.css'
 
@@ -152,5 +153,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-console.log(123)
