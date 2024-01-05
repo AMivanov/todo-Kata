@@ -152,3 +152,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+console.log(123)
