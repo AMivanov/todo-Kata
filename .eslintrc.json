@@ -54,6 +54,8 @@
     "react/prefer-stateless-function": "off",
     "class-methods-use-this": "off",
     "react/sort-comp": "off",
+    "object-curly-newline": "off",
+    "react/jsx-one-expression-per-line": "off",
     "eol-last": "off",
     "max-len": ["warn", 150, { "ignoreUrls": true }],
     "no-tabs": "off",

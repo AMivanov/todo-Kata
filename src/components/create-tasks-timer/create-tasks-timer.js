@@ -1,25 +1,25 @@
-import React from 'react'
-import { formatDistanceToNow } from 'date-fns'
+import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
-import './create-tasks-timer.css'
+import './create-tasks-timer.css';
 
 export default class CreateTasksTimer extends React.Component {
   constructor(props) {
-    super(props)
-    this.currentDate = new Date()
+    super(props);
+    this.currentDate = new Date();
     this.state = {
       timeCreated: formatDistanceToNow(props.date || this.currentDate, { includeSeconds: true }),
-    }
+    };
   }
 
   componentDidMount() {
     this.timerID = setInterval(() => {
-      this.tick()
-    }, 1000)
+      this.tick();
+    }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID)
+    clearInterval(this.timerID);
   }
 
   tick() {
@@ -27,18 +27,10 @@ export default class CreateTasksTimer extends React.Component {
       timeCreated: formatDistanceToNow(this.props.date || this.currentDate, {
         includeSeconds: true,
       }),
-    })
+    });
   }
 
   render() {
-    return (
-      <span className="created">
-        created
-        {' '}
-        {this.state.timeCreated}
-        {' '}
-        ago
-      </span>
-    )
+    return <span className="created">created {this.state.timeCreated} ago</span>;
   }
 }

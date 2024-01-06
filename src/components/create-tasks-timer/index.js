@@ -1,3 +1,3 @@
-import CreateTasksTimer from './create-tasks-timer'
+import CreateTasksTimer from './create-tasks-timer';
 
-export default CreateTasksTimer
+export default CreateTasksTimer;
