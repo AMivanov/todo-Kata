@@ -39,7 +39,7 @@
     "indent": ["warn", 2],
     "prettier/prettier": "off",
     "linebreak-style": [0, "unix"],
-    "quotes": ["error", "single"],
+    "quotes": ["warn", "single"],
     "semi": ["warn", "never"],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
