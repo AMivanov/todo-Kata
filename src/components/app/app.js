@@ -1,84 +1,92 @@
-import React from 'react'
+import React from 'react';
 
-import NewTaskForm from '../new-task-form'
-import TaskList from '../task-list'
-import Footer from '../footer'
-console.log('foo')
+import NewTaskForm from '../new-task-form';
+import TaskList from '../task-list';
+import Footer from '../footer';
 
-import './app.css'
+import './app.css';
 
 export default class App extends React.Component {
-  maxId = 1
+  maxId = 1;
 
   state = {
-    todoData: [this.createTodoItem('Completed task'),
+    todoData: [
+      this.createTodoItem('Completed task'),
       this.createTodoItem('Editing task'),
-      this.createTodoItem('Active task')],
+      this.createTodoItem('Active task'),
+    ],
     filter: 'all',
-  }
+  };
 
   createTodoItem(label) {
     return {
-      label, important: false, completed: false, editing: false, id: this.maxId++, date: new Date(),
-    }
+      label,
+      important: false,
+      completed: false,
+      editing: false,
+      id: this.maxId++,
+      date: new Date(),
+    };
   }
 
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
+      const idx = todoData.findIndex((el) => el.id === id);
+      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
       return {
         todoData: newArray,
-      }
-    })
-  }
+      };
+    });
+  };
 
   onToggleCompleted = (id) => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
+      const idx = todoData.findIndex((el) => el.id === id);
 
-      const oldItem = todoData[idx]
+      const oldItem = todoData[idx];
       const newItem = {
-        ...oldItem, completed: !oldItem.completed,
-      }
+        ...oldItem,
+        completed: !oldItem.completed,
+      };
 
-      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
       return {
         todoData: newArray,
-      }
-    })
-  }
+      };
+    });
+  };
 
   onToggleEdit = (id) => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-      const oldItem = todoData[idx]
+      const idx = todoData.findIndex((el) => el.id === id);
+      const oldItem = todoData[idx];
       const newItem = {
-        ...oldItem, editing: !oldItem.editing,
-      }
+        ...oldItem,
+        editing: !oldItem.editing,
+      };
 
-      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
       return {
         todoData: newArray,
-      }
-    })
-  }
+      };
+    });
+  };
 
   onLabelChange = (todoData, id, e, text) => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
+      const idx = todoData.findIndex((el) => el.id === id);
 
-      const oldItem = todoData[idx]
+      const oldItem = todoData[idx];
 
-      const newItem = { ...oldItem, label: ` ${text}` }
+      const newItem = { ...oldItem, label: ` ${text}` };
 
-      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
 
       return {
         todoData: newArray,
-      }
-    })
-  }
+      };
+    });
+  };
 
   addItem = (text) => {
     const newItem = {
@@ -88,48 +96,47 @@ export default class App extends React.Component {
       editing: false,
       id: this.maxId++,
       date: new Date(),
-    }
+    };
 
     this.setState(({ todoData }) => {
-      const newArr = [...todoData, newItem]
+      const newArr = [...todoData, newItem];
       return {
         todoData: newArr,
-      }
-    })
-  }
+      };
+    });
+  };
 
   onFilterChange = (filter) => {
-    this.setState({ filter })
-  }
+    this.setState({ filter });
+  };
 
   filter(items, filter) {
     switch (filter) {
-    case 'all':
-      return items
-    case 'active':
-      return items.filter((item) => !item.completed)
-    case 'completed':
-      return items.filter((item) => item.completed)
-    default:
-      return items
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter((item) => !item.completed);
+      case 'completed':
+        return items.filter((item) => item.completed);
+      default:
+        return items;
     }
   }
 
   deleteItemCompleted = () => {
     this.setState(({ todoData }) => {
-      const clearList = todoData.filter((el) => !el.completed)
+      const clearList = todoData.filter((el) => !el.completed);
       return {
         todoData: clearList,
-      }
-    })
-  }
+      };
+    });
+  };
 
   render() {
-    const { todoData, filter } = this.state
-    const visibleItems = this.filter(todoData, filter)
-    const completedCount = todoData
-      .filter((el) => el.completed).length
-    const todoCount = todoData.length - completedCount
+    const { todoData, filter } = this.state;
+    const visibleItems = this.filter(todoData, filter);
+    const completedCount = todoData.filter((el) => el.completed).length;
+    const todoCount = todoData.length - completedCount;
 
     return (
       <section className="todoapp">
@@ -150,6 +157,6 @@ export default class App extends React.Component {
           />
         </section>
       </section>
-    )
+    );
   }
 }
