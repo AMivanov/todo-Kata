@@ -1,0 +1,25 @@
+.icon-pause,
+.icon-play {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.icon-play {
+    font-size: 15px;
+}
+
+.icon-pause:after {
+    content: '⏸';
+}
+
+.icon-play:after {
+    content: '▶';
+}
+
+.task_timer {
+    font-family: "PT Bold Dusky", sans-serif;
+    color: #af5b5e;
+    font-size: 10px;
+    margin-left: 10px;
+}

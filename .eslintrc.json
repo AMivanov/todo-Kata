@@ -57,7 +57,7 @@
     "object-curly-newline": "off",
     "react/jsx-one-expression-per-line": "off",
     "eol-last": "off",
-    "max-len": ["warn", 150, { "ignoreUrls": true }],
+    "max-len": ["warn", 180, { "ignoreUrls": true }],
     "no-tabs": "off",
     "import/order": [
       2,
