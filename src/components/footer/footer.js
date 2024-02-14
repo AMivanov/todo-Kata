@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
-import TasksFilter from '../tasks-filter';
+import TasksFilter from '../tasks-filter'
 
-import './footer.css';
+import './footer.css'
 
 function Footer({ toDo, filter, onFilterChange, onDeleteCompleted }) {
   return (
@@ -13,7 +13,7 @@ function Footer({ toDo, filter, onFilterChange, onDeleteCompleted }) {
         Clear completed
       </button>
     </footer>
-  );
+  )
 }
 
 Footer.defaultProps = {
@@ -21,13 +21,13 @@ Footer.defaultProps = {
   filter: 'all',
   onFilterChange: () => {},
   onDeleteCompleted: () => {},
-};
+}
 
 Footer.prototype = {
   toDo: PropTypes.number,
   filter: PropTypes.string,
   onFilterChange: PropTypes.func,
   onDeleteCompleted: PropTypes.func,
-};
+}
 
-export default Footer;
+export default Footer

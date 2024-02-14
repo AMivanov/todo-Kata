@@ -1,9 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import CreateTasksTimer from '../create-tasks-timer';
+import CreateTasksTimer from '../create-tasks-timer'
+import TimerContainer from '../timer-container'
 
-import './task.css';
+import './task.css'
 
 export default class Task extends React.Component {
   static defaultProps = {
@@ -13,7 +14,7 @@ export default class Task extends React.Component {
     onToggleEdit: () => {},
     onDeleted: () => {},
     editing: false,
-  };
+  }
 
   static propTypes = {
     label: PropTypes.string,
@@ -22,19 +23,20 @@ export default class Task extends React.Component {
     onToggleEdit: PropTypes.func,
     onDeleted: PropTypes.func,
     editing: PropTypes.bool,
-  };
+  }
 
   render() {
-    const { label, completed, onToggleCompleted, onToggleEdit, onDeleted, editing, date } = this.props;
+    const { label, completed, onToggleCompleted, onToggleEdit, onDeleted, editing, date, minutes, seconds, id } = this.props
+    console.log(this.props)
 
-    let classNames = 'view';
+    let classNames = 'view'
 
     if (completed) {
-      classNames += ' completed';
+      classNames += ' completed'
     }
 
     if (editing) {
-      classNames += ' edit';
+      classNames += ' edit'
     }
 
     return (
@@ -50,12 +52,17 @@ export default class Task extends React.Component {
           />
           <label htmlFor={label}>
             <span className="description">{label}</span>
+            <TimerContainer
+              id={id}
+              minutes={minutes}
+              seconds={seconds}
+            />
             <CreateTasksTimer date={date} />
           </label>
           <button className="icon icon-edit" onClick={onToggleEdit} />
           <button className="icon icon-destroy" onClick={onDeleted} />
         </div>
       </li>
-    );
+    )
   }
 }

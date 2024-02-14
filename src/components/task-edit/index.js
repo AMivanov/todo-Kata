@@ -1,3 +1,3 @@
-import TaskEdit from './task-edit';
+import TaskEdit from './task-edit'
 
-export default TaskEdit;
+export default TaskEdit

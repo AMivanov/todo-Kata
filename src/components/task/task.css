@@ -29,3 +29,56 @@
 .toggle-all:checked + label:before {
     color: #737373;
 }
+
+.icon {
+    width: 30px;
+    height: 40px;
+    font-size: 34px;
+    color: #cc9a9a;
+    margin: auto 0;
+    transition: color 0.2s ease-out;
+    cursor: pointer;
+}
+.icon:hover {
+    color: #af5b5e;
+}
+
+.icon-pause,
+.icon-play {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.icon-play {
+    font-size: 15px;
+}
+
+.icon-edit {
+    position: absolute;
+    top: 0;
+    bottom: -3px;
+    font-size: 19px;
+    right: 45px;
+}
+.icon-edit:after {
+    content: "✎";
+}
+
+.icon-destroy {
+    position: absolute;
+    top: 0;
+    bottom: -3px;
+    right: 10px;
+}
+.icon-destroy:after {
+    content: "×";
+}
+
+.icon-pause:after {
+    content: "⏸";
+}
+
+.icon-play:after {
+    content: "▶";
+}
