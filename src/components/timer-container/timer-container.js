@@ -6,9 +6,9 @@ export default class TimerContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isPlaying: JSON.parse(sessionStorage.getItem(`${this.props.id}`)).isPlaying || false,
-      minutes: JSON.parse(sessionStorage.getItem(`${this.props.id}`)).minutes || props.minutes || 0,
-      seconds: JSON.parse(sessionStorage.getItem(`${this.props.id}`)).seconds || props.seconds || 0,
+      isPlaying: JSON.parse(sessionStorage.getItem(`${this.props.id}`))?.isPlaying || false,
+      minutes: JSON.parse(sessionStorage.getItem(`${this.props.id}`))?.minutes || props.minutes || 0,
+      seconds: JSON.parse(sessionStorage.getItem(`${this.props.id}`))?.seconds || props.seconds || 0,
     }
   }
 
