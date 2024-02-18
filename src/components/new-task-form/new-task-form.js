@@ -17,12 +17,14 @@ export default class NewTaskForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    this.props.onItemAdded(this.state.label, this.state.min, this.state.sec)
-    this.setState({
-      label: '',
-      min: '',
-      sec: '',
-    })
+    if ((this.state.label.trim() !== '') && (this.state.min.trim() !== '' || this.state.sec.trim() !== '')) {
+      this.props.onItemAdded(this.state.label, this.state.min, this.state.sec)
+      this.setState({
+        label: '',
+        min: '',
+        sec: '',
+      })
+    }
   }
 
   render() {
@@ -46,6 +48,7 @@ export default class NewTaskForm extends React.Component {
             name="min"
             onChange={this.onInputChange}
             value={this.state.min}
+            min="0"
           />
           <input
             type="number"
@@ -54,6 +57,8 @@ export default class NewTaskForm extends React.Component {
             name="sec"
             onChange={this.onInputChange}
             value={this.state.sec}
+            min="0"
+            max="59"
           />
           <input type="submit" style={{ display: 'none' }} />
         </form>

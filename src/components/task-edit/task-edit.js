@@ -39,8 +39,10 @@ export default class TaskEdit extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault()
-              onLabelChange(todos, id, e, this.state.label)
-              onToggleEdit(id)
+              if (this.state.label.trim() !== '') {
+                onLabelChange(todos, id, e, this.state.label)
+                onToggleEdit(id)
+              }
             }}
           >
             <input

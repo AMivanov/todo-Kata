@@ -16,23 +16,38 @@ export default class App extends React.Component {
       this.createTodoItem('Active task', 20, 20),
     ],
     filter: 'all',
+    inactiveTime: 0,
   }
 
-  // timerTickSeconds = (id, sec) => {
-  //   this.setState(({ todoData }) => {
-  //     const idx = todoData.findIndex((el) => el.id === id)
-  //     const oldItem = todoData[idx]
-  //     const newItem = {
-  //       ...oldItem,
-  //       seconds: sec,
-  //     }
-  //
-  //     const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
-  //     return {
-  //       todoData: newArray,
-  //     }
-  //   })
-  // }
+  componentDidMount() {
+    this.intervalId = setInterval(() => {
+      if (this.state.filter !== 'all') {
+        this.handleTick()
+      }
+    }, 1000)
+  }
+
+  handleTick = () => {
+    this.setState((prevState) => ({
+      inactiveTime: prevState.inactiveTime + 1,
+    }))
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.filter !== this.state.filter) {
+      if (this.state.filter === 'all') {
+        this.setState({ inactiveTime: 0 })
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.clearInterval()
+  }
+
+  clearInterval = () => {
+    clearInterval(this.intervalId)
+  }
 
   createTodoItem(label, minutes, seconds) {
     return {
@@ -107,16 +122,7 @@ export default class App extends React.Component {
   }
 
   addItem = (text, minutes, seconds) => {
-    const newItem = {
-      label: text,
-      minutes,
-      seconds,
-      important: false,
-      completed: false,
-      editing: false,
-      id: this.maxId++,
-      date: new Date(),
-    }
+    const newItem = this.createTodoItem(text, minutes, seconds)
 
     this.setState(({ todoData }) => {
       const newArr = [...todoData, newItem]
@@ -171,6 +177,7 @@ export default class App extends React.Component {
             onItemAdded={this.addItem}
             minutes={this.minutes}
             seconds={this.seconds}
+            inactiveTime={this.state.inactiveTime}
           />
           <Footer
             toDo={todoCount}
