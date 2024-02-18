@@ -1,8 +1,24 @@
 import React from 'react'
-
 import './timer-container.css'
+import PropTypes from 'prop-types'
 
 export default class TimerContainer extends React.Component {
+  static defaultProps = {
+    id: 1,
+    minutes: 0,
+    seconds: 0,
+    inactiveTime: 0,
+    completed: false,
+  }
+
+  static propTypes = {
+    id: PropTypes.number,
+    minutes: PropTypes.number,
+    seconds: PropTypes.number,
+    inactiveTime: PropTypes.number,
+    completed: PropTypes.bool,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -13,6 +29,19 @@ export default class TimerContainer extends React.Component {
   }
 
   componentDidMount() {
+    if (this.state.isPlaying) {
+      const { minutes, seconds } = this.state
+      const { inactiveTime } = this.props
+      const totalInactiveSeconds = inactiveTime > 0 ? inactiveTime : 0
+      const totalSeconds = minutes * 60 + seconds - totalInactiveSeconds
+      const updatedMinutes = Math.floor(totalSeconds / 60)
+      const updatedSeconds = totalSeconds % 60
+
+      this.setState({
+        minutes: updatedMinutes,
+        seconds: updatedSeconds,
+      })
+    }
     this.intervalId = setInterval(() => {
       if (this.state.isPlaying) {
         this.handleTick()
@@ -29,17 +58,23 @@ export default class TimerContainer extends React.Component {
     clearInterval(this.intervalId)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.completed !== this.props.completed) {
+      if (this.props.completed) {
+        this.handlePause()
+      }
+    }
+  }
+
   handlePlay = () => {
     this.setState({ isPlaying: true })
   }
 
   handlePause = () => {
     this.setState({ isPlaying: false })
-    // this.clearInterval()
   }
 
   handleTick = () => {
-    console.log(this.state)
     const { minutes, seconds } = this.state
     if (seconds > 0) {
       this.setState((prevState) => ({

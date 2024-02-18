@@ -13,6 +13,8 @@ export default class TaskList extends React.Component {
     onToggleCompleted: () => {},
     onToggleEdit: () => {},
     onLabelChange: () => {},
+    onItemAdded: () => {},
+    inactiveTime: 0,
   }
 
   static propTypes = {
@@ -21,10 +23,12 @@ export default class TaskList extends React.Component {
     onToggleCompleted: PropTypes.func,
     onToggleEdit: PropTypes.func,
     onLabelChange: PropTypes.func,
+    onItemAdded: PropTypes.func,
+    inactiveTime: PropTypes.number,
   }
 
   render() {
-    const { todos, onDeleted, onToggleCompleted, onToggleEdit, onLabelChange, onItemAdded } = this.props
+    const { todos, onDeleted, onToggleCompleted, onToggleEdit, onLabelChange, onItemAdded, inactiveTime } = this.props
 
     const elements = todos.map((item) => {
       if (item.editing) {
@@ -36,6 +40,7 @@ export default class TaskList extends React.Component {
             onToggleEdit={() => onToggleEdit(item.id)}
             onLabelChange={onLabelChange}
             onItemAdded={onItemAdded}
+            inactiveTime={inactiveTime}
           />
         )
       }
@@ -47,6 +52,7 @@ export default class TaskList extends React.Component {
           onToggleEdit={() => onToggleEdit(item.id)}
           onDeleted={() => onDeleted(item.id)}
           onItemAdded={onItemAdded}
+          inactiveTime={inactiveTime}
         />
       )
     })

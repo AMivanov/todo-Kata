@@ -14,6 +14,11 @@ export default class Task extends React.Component {
     onToggleEdit: () => {},
     onDeleted: () => {},
     editing: false,
+    date: new Date(),
+    minutes: 0,
+    seconds: 0,
+    id: 1,
+    inactiveTime: 0,
   }
 
   static propTypes = {
@@ -23,11 +28,15 @@ export default class Task extends React.Component {
     onToggleEdit: PropTypes.func,
     onDeleted: PropTypes.func,
     editing: PropTypes.bool,
+    date: PropTypes.number,
+    minutes: PropTypes.number,
+    seconds: PropTypes.number,
+    id: PropTypes.number,
+    inactiveTime: PropTypes.number,
   }
 
   render() {
-    const { label, completed, onToggleCompleted, onToggleEdit, onDeleted, editing, date, minutes, seconds, id } = this.props
-    console.log(this.props)
+    const { label, completed, onToggleCompleted, onToggleEdit, onDeleted, editing, date, minutes, seconds, id, inactiveTime } = this.props
 
     let classNames = 'view'
 
@@ -56,6 +65,8 @@ export default class Task extends React.Component {
               id={id}
               minutes={minutes}
               seconds={seconds}
+              inactiveTime={inactiveTime}
+              completed={completed}
             />
             <CreateTasksTimer date={date} />
           </label>
