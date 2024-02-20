@@ -19,10 +19,18 @@ export default class TaskEdit extends React.Component {
   }
 
   state = {
-    label: ' ',
+    label: '',
   }
 
   className = 'view'
+
+  componentDidMount() {
+    const { todos, id } = this.props
+    const currentTodo = todos.find((todo) => todo.id === id)
+    if (currentTodo) {
+      this.setState({ label: currentTodo.label })
+    }
+  }
 
   tmpLabelChange = (e) => {
     this.setState({
@@ -42,12 +50,15 @@ export default class TaskEdit extends React.Component {
               if (this.state.label.trim() !== '') {
                 onLabelChange(todos, id, e, this.state.label)
                 onToggleEdit(id)
+              } else {
+                e.preventDefault()
               }
             }}
           >
             <input
               type="text"
               className="edit"
+              value={this.state.label}
               onChange={(e) => {
                 e.preventDefault()
                 this.tmpLabelChange(e)

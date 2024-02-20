@@ -28,9 +28,9 @@ export default class Task extends React.Component {
     onToggleEdit: PropTypes.func,
     onDeleted: PropTypes.func,
     editing: PropTypes.bool,
-    date: PropTypes.number,
-    minutes: PropTypes.number,
-    seconds: PropTypes.number,
+    date: PropTypes.object,
+    minutes: PropTypes.string,
+    seconds: PropTypes.string,
     id: PropTypes.number,
     inactiveTime: PropTypes.number,
   }

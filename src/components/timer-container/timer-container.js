@@ -13,8 +13,8 @@ export default class TimerContainer extends React.Component {
 
   static propTypes = {
     id: PropTypes.number,
-    minutes: PropTypes.number,
-    seconds: PropTypes.number,
+    minutes: PropTypes.string,
+    seconds: PropTypes.string,
     inactiveTime: PropTypes.number,
     completed: PropTypes.bool,
   }
@@ -61,17 +61,21 @@ export default class TimerContainer extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.completed !== this.props.completed) {
       if (this.props.completed) {
-        this.handlePause()
+        this.setState({ isPlaying: false })
       }
     }
   }
 
   handlePlay = () => {
-    this.setState({ isPlaying: true })
+    if (!this.props.completed) {
+      this.setState({ isPlaying: true })
+    }
   }
 
   handlePause = () => {
-    this.setState({ isPlaying: false })
+    if (!this.props.completed) {
+      this.setState({ isPlaying: false })
+    }
   }
 
   handleTick = () => {

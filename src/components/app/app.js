@@ -11,9 +11,9 @@ export default class App extends React.Component {
 
   state = {
     todoData: [
-      this.createTodoItem('Completed task', 10, 10),
-      this.createTodoItem('Editing task', 15, 15),
-      this.createTodoItem('Active task', 20, 20),
+      this.createTodoItem('Completed task', '10', '10'),
+      this.createTodoItem('Editing task', '15', '15'),
+      this.createTodoItem('Active task', '20', '20'),
     ],
     filter: 'all',
     inactiveTime: 0,
@@ -36,6 +36,10 @@ export default class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.filter !== this.state.filter) {
       if (this.state.filter === 'all') {
+        this.setState({ inactiveTime: 0 })
+      } else if (this.state.filter === 'active') {
+        this.setState({ inactiveTime: 0 })
+      } else if (this.state.filter === 'completed') {
         this.setState({ inactiveTime: 0 })
       }
     }
